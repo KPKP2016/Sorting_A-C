@@ -19,7 +19,7 @@ namespace Sorting_A_C
             StreamReader reader = null;
             try
             {
-                reader = new StreamReader("C:\\Users\\KPate\\OneDrive\\Documents\\C_Sharp\\Sorting_A+C\\Net_1_256.txt");
+                reader = new StreamReader("C:/Net_1_256.txt");
                 data = reader.ReadLine();
 
                 while (data!= null)
