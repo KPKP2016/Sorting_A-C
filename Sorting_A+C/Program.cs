@@ -50,45 +50,72 @@ namespace Sorting_A_C
 
             }
 
+            if (fileChoice == "2")
+            {
+                // reads text file
+                String[] lines = File.ReadAllLines("Net_2_256.txt");
 
+                foreach (string value in lines)
+                {
+                    // converts from string to integer and stores it in array
+                    if (int.TryParse(value, out int number))
+                    {
+                        tempArray.Add(number);
+                    }
+                }
 
+                int[] finalArray = tempArray.ToArray();
 
+                // put in option for ascending order or descending order
+                Array.Sort(finalArray);
 
-
-
-
-                /*
-                            // empty array created to store numbers from text file.
-                            int[] completeArray = { };
-                            List<int> tempArray = new List<int>(completeArray);
-
-                            string data;
-                            StreamReader reader = null;
-
-                            // reads file
-                            reader = new StreamReader("Net_1_256.txt");
-                            data = reader.ReadLine();
-                                        if (data == null)
-                                        {
-                                            foreach (int value in tempArray)
-                                            {
-                                                Console.WriteLine(value);
-                                            }
-                                        }
-
-                            // runs through each number printing it until there is no more left.
-                            while (data!= null)
-                            {
-                                Console.WriteLine(data);
-                                data = reader.ReadLine();
-
-                                // converts from string to integer
-                                tempArray.Add(int.Parse(data));
-
-                            }
-                            reader.Close();*/
+                for (int i = 0; i < finalArray.Length; i += 10)
+                {
+                    Console.WriteLine(finalArray[i]);
+                }
 
 
             }
+
+
+
+
+
+
+
+
+            /*
+                        // empty array created to store numbers from text file.
+                        int[] completeArray = { };
+                        List<int> tempArray = new List<int>(completeArray);
+
+                        string data;
+                        StreamReader reader = null;
+
+                        // reads file
+                        reader = new StreamReader("Net_1_256.txt");
+                        data = reader.ReadLine();
+                                    if (data == null)
+                                    {
+                                        foreach (int value in tempArray)
+                                        {
+                                            Console.WriteLine(value);
+                                        }
+                                    }
+
+                        // runs through each number printing it until there is no more left.
+                        while (data!= null)
+                        {
+                            Console.WriteLine(data);
+                            data = reader.ReadLine();
+
+                            // converts from string to integer
+                            tempArray.Add(int.Parse(data));
+
+                        }
+                        reader.Close();*/
+
+
+        }
     }
 }
