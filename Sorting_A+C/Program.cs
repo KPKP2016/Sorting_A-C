@@ -13,47 +13,28 @@ namespace Sorting_A_C
     {
         static void Main(string[] args)
         {
-
-            Console.WriteLine("Please select a file. (1,2,3): ");
-
-            // ask for 256 or 2048
-
-            String fileChoice = Console.ReadLine();
-
             List<int> tempArray = new List<int>();
+            
+            Console.WriteLine("Please select a file. (1,2,3): ");
+            String fileChoice = Console.ReadLine(); 
 
-            // put in new options for other text files
             if (fileChoice == "1")
             {
-                // reads text file
+                Console.WriteLine("256 or 2048. (1,2): ");
+                String largeFileChoice = Console.ReadLine();
+
                 String[] lines = File.ReadAllLines("Net_1_256.txt");
 
-                foreach (string value in lines)
-                {
-                    // converts from string to integer and stores it in array
-                    if (int.TryParse(value, out int number))
-                    {
-                        tempArray.Add(number);
-                    }
-                }
-
-                int[] finalArray = tempArray.ToArray();
-
-                // put in option for ascending order or descending order
-                Array.Sort(finalArray);
-
-                for (int i = 0; i < finalArray.Length; i += 10)
-                {
-                    Console.WriteLine(finalArray[i]);
-                }
-
-
-            }
-
-            if (fileChoice == "2")
-            {
                 // reads text file
-                String[] lines = File.ReadAllLines("Net_2_256.txt");
+                if (largeFileChoice == "1")
+                {
+                    lines = File.ReadAllLines("Net_1_256.txt");
+                }
+
+                if (largeFileChoice == "2")
+                {
+                    lines = File.ReadAllLines("Net_1_2048.txt");
+                }
 
                 foreach (string value in lines)
                 {
@@ -66,56 +47,68 @@ namespace Sorting_A_C
 
                 int[] finalArray = tempArray.ToArray();
 
-                // put in option for ascending order or descending order
-                Array.Sort(finalArray);
 
-                for (int i = 0; i < finalArray.Length; i += 10)
+                // sorting algorithm choice between 
+
+                Console.WriteLine("Bubble sort, Insertion sort, Quick sort. (1,2,3): ");
+
+                String sortChoice = Console.ReadLine();
+
+                if (sortChoice == "1")
                 {
-                    Console.WriteLine(finalArray[i]);
+                    SortingAlgorithms sorting = new SortingAlgorithms();
+                    sorting.Values = finalArray;
+                    sorting.Bubble();
+                }
+
+                if (sortChoice == "2")
+                {
+                    SortingAlgorithms sorting = new SortingAlgorithms();
+                    sorting.Values = finalArray;
+                    sorting.Insertion();
+                }
+
+                if (sortChoice == "3")
+                {
+                    int low = Array.IndexOf(finalArray, finalArray.Min());
+                    int high = Array.IndexOf(finalArray, finalArray.Max());
+
+                    SortingAlgorithms sorting = new SortingAlgorithms();
+                    sorting.Values = finalArray;
+                    sorting.Quick(low,high);
                 }
 
 
+                // put in option for ascending order or descending order
+
+                Console.WriteLine("Ascending or Decending? (1,2): ");
+                String outputChoice = Console.ReadLine();
+
+                if (outputChoice == "1")
+                {
+                    for (int i = 1; i < finalArray.Length; i += 10)
+                    {
+                        Console.WriteLine(finalArray[i]);
+                    }
+                }
+
+                // descending order
+                if (outputChoice == "2")
+                {
+                    Array.Reverse(finalArray);
+
+                    for (int i = 1; i < finalArray.Length; i += 10)
+                    {
+                        Console.WriteLine(finalArray[i]);
+                    }
+                }
+
+
+
+
+
+
             }
-
-
-
-
-
-
-
-
-            /*
-                        // empty array created to store numbers from text file.
-                        int[] completeArray = { };
-                        List<int> tempArray = new List<int>(completeArray);
-
-                        string data;
-                        StreamReader reader = null;
-
-                        // reads file
-                        reader = new StreamReader("Net_1_256.txt");
-                        data = reader.ReadLine();
-                                    if (data == null)
-                                    {
-                                        foreach (int value in tempArray)
-                                        {
-                                            Console.WriteLine(value);
-                                        }
-                                    }
-
-                        // runs through each number printing it until there is no more left.
-                        while (data!= null)
-                        {
-                            Console.WriteLine(data);
-                            data = reader.ReadLine();
-
-                            // converts from string to integer
-                            tempArray.Add(int.Parse(data));
-
-                        }
-                        reader.Close();*/
-
-
         }
     }
 }
