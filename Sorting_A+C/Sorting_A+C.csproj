@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SearchingAlgorithms.cs" />
+    <Compile Include="Net_3.cs" />
+    <Compile Include="Net_2.cs" />
+    <Compile Include="Net_1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="SortingAlgorithms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

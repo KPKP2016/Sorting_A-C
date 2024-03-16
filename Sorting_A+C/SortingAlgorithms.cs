@@ -63,7 +63,7 @@ public class SortingAlgorithms
             (Values[i + 1], Values[high]) = (Values[high], Values[i + 1]);
 
             Quick(low, i);
-            Quick(i + 1, high);
+            Quick(i + 2, high);
         }
         return Values;
     }
