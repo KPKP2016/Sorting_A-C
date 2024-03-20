@@ -30,13 +30,14 @@ namespace Sorting_A_C
             // Net_1 files
             if (fileChoice == "1")
             {                
-                // reads text file
+                // reads 256 text file
                 if (largeFileChoice == "1")
                 {
                     Net_1 data = new Net_1();
                     finalArray = data.SmallFile();
                 }
 
+                // reads 2048 text file
                 else if (largeFileChoice == "2")
                 { 
                     Net_1 data = new Net_1();
@@ -47,13 +48,14 @@ namespace Sorting_A_C
             // Net_2 files
             else if (fileChoice == "2")
             {
-                // reads text file
+                // reads  256 text file
                 if (largeFileChoice == "1")
                 {
                     Net_2 data = new Net_2();
                     finalArray = data.SmallFile();
                 }
 
+                // reads 2048 text file
                 else if (largeFileChoice == "2")
                 {
                     Net_2 data = new Net_2();
@@ -64,13 +66,14 @@ namespace Sorting_A_C
             // Net_3 files
             else if (fileChoice == "3")
             {
-                // reads text file
+                // reads 256 text file
                 if (largeFileChoice == "1")
                 {
                     Net_3 data = new Net_3();
                     finalArray = data.SmallFile();
                 }
 
+                // reads 2048 text file
                 else if (largeFileChoice == "2")
                 {
                     Net_3 data = new Net_3();
@@ -79,20 +82,11 @@ namespace Sorting_A_C
             }
 
 
-
-
-
-
-
-
-
-
-
             // sorting algorithm choice between 
-
-            Console.WriteLine("Bubble sort, Insertion sort, Quick sort. (1,2,3): ");
+            Console.WriteLine("Bubble sort, Insertion sort, Quick sort or Selection sort. (1,2,3,4): ");
             String sortChoice = Console.ReadLine();
 
+            // runs bubble sort algorithm
             if (sortChoice == "1")
             {
                 SortingAlgorithms sorting = new SortingAlgorithms();
@@ -100,6 +94,7 @@ namespace Sorting_A_C
                 sorting.Bubble();
             }
 
+            // runs insertion sort algorithm
             else if (sortChoice == "2")
             {
                 SortingAlgorithms sorting = new SortingAlgorithms();
@@ -107,27 +102,33 @@ namespace Sorting_A_C
                 sorting.Insertion();
             }
 
+            // runs quick sort algorithm
             else if (sortChoice == "3")
-            {
-                // fix quick sort algorithm
-
+            { 
                 SortingAlgorithms sorting = new SortingAlgorithms();
                 sorting.Values = finalArray;
-                sorting.Quick(0, finalArray.Length-1);
+                sorting.Quick(0, finalArray.Length-1); // takes 2 parameters: first index and last index
 
+            }
+
+            // runs selection sort algorithm
+            else if (sortChoice == "4")
+            {
+                SortingAlgorithms sorting = new SortingAlgorithms();
+                sorting.Values = finalArray;
+                sorting.Selection(); 
 
             }
 
 
-
-            // put in option for ascending order or descending order
-
+            // option for ascending order or descending order
             Console.WriteLine("Ascending or Decending? (1,2): ");
             String outputChoice = Console.ReadLine();
 
+            // ascending order
             if (outputChoice == "1")
             {
-                if (largeFileChoice == "1")
+                if (largeFileChoice == "1") // this is a 256 text file, so it outputs every 10 values
                 {
                     for (int i = 0; i < finalArray.Length; i += 10)
                     {
@@ -135,7 +136,7 @@ namespace Sorting_A_C
                     }
                 }
 
-                else if (largeFileChoice == "2")
+                else if (largeFileChoice == "2") // this is a 2048 text file, so it outputs every 50 values
                 {
                     for (int i = 0; i < finalArray.Length; i += 50)
                     {
@@ -143,13 +144,15 @@ namespace Sorting_A_C
                     }
                 }
             }
+
 
             // descending order
             if (outputChoice == "2")
             {
+                // reverses the ordered array
                 Array.Reverse(finalArray);
 
-                if (largeFileChoice == "1")
+                if (largeFileChoice == "1") // this is a 256 text file, so it outputs every 10 values
                 {
                     for (int i = 0; i < finalArray.Length; i += 10)
                     {
@@ -157,30 +160,29 @@ namespace Sorting_A_C
                     }
                 }
 
-                else if (largeFileChoice == "2")
+                else if (largeFileChoice == "2") // this is a 2048 text file, so it outputs every 10 values
                 {
                     for (int i = 0; i < finalArray.Length; i += 50)
                     {
                         Console.WriteLine(finalArray[i]);
                     }
                 }
+                
+                // reverses the changes after valuse outputted
                 Array.Reverse(finalArray);
             }
 
 
-
-
-
-            // asks user to find number inside list
+            // asks user to choose number to find inside list
             Console.WriteLine("What number do you want to find in this list: ");
             int targetNum = int.Parse(Console.ReadLine());
 
             // checks if number is inside the list
             if (!finalArray.Contains(targetNum))
             {
-                // loops if number selected not in array
                 Console.WriteLine("Not in Array");
 
+                // chooses the nearest value next to the input number
                 SearchingAlgorithms search = new SearchingAlgorithms();
                 search.Values = finalArray;
                 targetNum = search.NearestValue(targetNum);
@@ -188,12 +190,11 @@ namespace Sorting_A_C
             }
 
 
-
-
-
+            // choice to use binary or linear search.
             Console.WriteLine("Binary search, linear search. (1,2): ");
             String SearchChoice = Console.ReadLine();
 
+            // binary search
             if (SearchChoice == "1")
             {
                 SearchingAlgorithms search = new SearchingAlgorithms();
@@ -201,16 +202,13 @@ namespace Sorting_A_C
                 search.Binary(targetNum);
             }
 
+            // lienar search
             else if (SearchChoice == "2")
             {
                 SearchingAlgorithms search = new SearchingAlgorithms();
                 search.Values = finalArray;
                 search.Linear(targetNum);
             }
-
-
-
-
         }
     }
 }
